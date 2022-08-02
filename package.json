@@ -1,7 +1,7 @@
 {
   "name": "@donutteam/url-utilities",
   "version": "1.0.0",
-  "description": "A collection of various url-related utility functions",
+  "description": "A collection of various url-related utility functions.",
   "main": "./index.js",
   "scripts": {
     "lint": "eslint . -c ./.eslintrc.cjs",
