@@ -1,0 +1,25 @@
+{
+  "name": "@donutteam/url-utilities",
+  "version": "1.0.0",
+  "description": "A collection of various url-related utility functions",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint . -c ./.eslintrc.cjs",
+    "lint-fix": "eslint . -c ./.eslintrc.cjs --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donutteam/url-utilities.git"
+  },
+  "keywords": [
+    "url",
+    "util",
+    "utilities"
+  ],
+  "author": "Donut Team",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@donutteam/eslint-config": "^1.0.6"
+  }
+}
