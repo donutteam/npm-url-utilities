@@ -6,10 +6,8 @@
  * This is a list of domains where HEAD requests are known to be problematic and should NEVER be used.
  *
  * This exists because some tiny, independent, obscure web services (such as Mega) are unacceptable bullshit and do not respond to HEAD requests.
- *
- * @type {Set<String>}
  */
-export const noHeadRequestDomains = new Set(
+export const noHeadRequestDomains : Set<string> = new Set(
 	[
 		"mega.io",
 		"mega.nz",
@@ -19,11 +17,11 @@ export const noHeadRequestDomains = new Set(
 /**
  * Fetches the requested URL and returns its Location header, if it has one.
  *
- * @param {URL} url A URL object.
- * @returns {String} The Location header returned by the above URL OR undefined if it didn't have one.
+ * @param url A URL object.
+ * @returns The Location header returned by the above URL OR undefined if it didn't have one.
  * @author Loren Goodwin
  */
-export async function getLocationHeader(url)
+export async function getLocationHeader(url : URL) : Promise<string>
 {
 	const tryHeadRequest = !noHeadRequestDomains.has(url.hostname);
 
@@ -70,12 +68,12 @@ export async function getLocationHeader(url)
 /**
  * Gets the chain of URLs that a given URL redirects through.
  *
- * @param {URL} url A URL object.
- * @param {Number} [maxChainLength] The maximum length of the redirect chain. Defaults to 20 to match browsers.
- * @returns {Array<URL>|null} An array of URLs in the chain. This will be null if something went wrong getting the chain.
+ * @param url A URL object.
+ * @param maxChainLength The maximum length of the redirect chain. Defaults to 20 to match browsers.
+ * @returns An array of URLs in the chain. This will be null if something went wrong getting the chain.
  * @author Loren Goodwin
  */
-export async function getRedirectChain(url, maxChainLength = 20)
+export async function getRedirectChain(url : URL, maxChainLength = 20) : Promise<Array<URL>|null>
 {
 	const chain = [];
 
@@ -121,11 +119,11 @@ export async function getRedirectChain(url, maxChainLength = 20)
 /**
  * Checks if the given string is a valid URL.
  *
- * @param {String} url A string.
- * @returns {Boolean} Whether or not the string was a valid URL.
+ * @param url A string.
+ * @returns Whether or not the string was a valid URL.
  * @author Loren Goodwin
  */
-export function isValidURL(url)
+export function isValidURL(url : string) : boolean
 {
 	try
 	{
