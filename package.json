@@ -2,7 +2,7 @@
   "name": "@donutteam/url-utilities",
   "version": "1.1.0",
   "description": "A collection of various url-related utility functions.",
-  "main": "./index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "build": "npx rimraf lib && npx tsc",
     "lint": "eslint . -c ./.eslintrc.cjs",
