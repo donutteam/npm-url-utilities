@@ -9,16 +9,16 @@
  */
 export const noHeadRequestDomains : Set<string> = new Set(
 	[
+		"mega.co.nz",
 		"mega.io",
 		"mega.nz",
-		"mega.co.nz",
 	]);
 
 /**
  * Fetches the requested URL and returns its Location header, if it has one.
  *
  * @param url A URL object.
- * @returns The Location header returned by the above URL OR undefined if it didn't have one.
+ * @returns The Location header returned by the above URL OR null if it didn't have one.
  * @author Loren Goodwin
  */
 export async function getLocationHeader(url : URL) : Promise<string>
@@ -47,17 +47,29 @@ export async function getLocationHeader(url : URL) : Promise<string>
 		}
 		catch (error)
 		{
-			console.error(`[URLUtil] A request on the domain ${ url.hostname } failed to respond to a HEAD request.`);
+			// If the request was aborted, then we'll try again with a GET request
 		}
 	}
 
 	if (response == undefined)
 	{
-		response = await fetch(url,
-			{
-				method: "GET",
-				redirect: "manual",
-			});
+		try
+		{
+			response = await fetch(url,
+				{
+					method: "GET",
+					redirect: "manual",
+				});
+		}
+		catch (error)
+		{
+			return null;
+		}
+	}
+
+	if (!response.ok)
+	{
+		return null;
 	}
 
 	const locationHeader = response.headers.get("Location");
@@ -105,8 +117,6 @@ export async function getRedirectChain(url : URL, maxChainLength = 20) : Promise
 		}
 		catch (error)
 		{
-			console.error(`[URL] An error occured requesting ${ url } as part of a redirect chain: `, error);
-
 			return null;
 		}
 
