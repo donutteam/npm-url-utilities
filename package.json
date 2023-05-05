@@ -1,6 +1,6 @@
 {
   "name": "@donutteam/url-utilities",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A collection of various url-related utility functions.",
   "main": "./lib/index.js",
   "scripts": {
